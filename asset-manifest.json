@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-task-track/pure_frontend/static/css/main.c31f9276.css",
+    "main.js": "/react-task-track/pure_frontend/static/js/main.d71eff46.js",
+    "static/js/787.9f4d1261.chunk.js": "/react-task-track/pure_frontend/static/js/787.9f4d1261.chunk.js",
+    "index.html": "/react-task-track/pure_frontend/index.html",
+    "main.c31f9276.css.map": "/react-task-track/pure_frontend/static/css/main.c31f9276.css.map",
+    "main.d71eff46.js.map": "/react-task-track/pure_frontend/static/js/main.d71eff46.js.map",
+    "787.9f4d1261.chunk.js.map": "/react-task-track/pure_frontend/static/js/787.9f4d1261.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c31f9276.css",
+    "static/js/main.d71eff46.js"
+  ]
+}
