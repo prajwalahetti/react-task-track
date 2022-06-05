@@ -1,4 +1,5 @@
 {
+  "homepage": "https://prajwalahetti.github.io/react-task-track/",
   "name": "task-tracker",
   "version": "0.1.0",
   "private": true,
@@ -22,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": " json-server --watch db.json --port 5000",
-    "dev": "concurrently \"npm run server\" \"npm run start\""
+    "dev": "concurrently \"npm run server\" \"npm run build\""
   },
   "eslintConfig": {
     "extends": [
