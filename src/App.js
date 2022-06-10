@@ -4,6 +4,7 @@ import Tasks from './componenets/Tasks';
 import { useState } from 'react';
 import AddTask from './componenets/AddTask';
 import { useEffect } from 'react';
+import axios from 'axios';
 function App() {
 
   const [showAddTask,setShowAddTask]=useState(true)
@@ -22,30 +23,76 @@ function App() {
   // fetch tasks
 const fetchTasks=async()=>
     {
-      const res =await fetch('http://localhost:5000/tasks')
-      const data=await res.json()
+      const res =await axios.get('https://62a31a9721232ff9b2186c2c.mockapi.io/tasks')
+      const data=await res.data;
       return data
     }
     // delete task
     const deleteTask =async (id) =>
     {
-      await fetch( `http://localhost:5000/tasks/${id}`,{method :'DELETE'})
+      //await fetch( `http://localhost:5000/tasks/${id}`,{method :'DELETE'})
+      //setTasks(tasks.filter((task)=>task.id!==id))
+
+      // using axios
+      await axios({
+        method:'delete',url:`https://62a31a9721232ff9b2186c2c.mockapi.io/tasks/${id}`,
+        headers:{'Content-type':'application/json'}
+      })
       setTasks(tasks.filter((task)=>task.id!==id))
+   
     }
+      // Fetch Task
+  const fetchTask = async (id) => {
+    const res = await axios(`https://62a31a9721232ff9b2186c2c.mockapi.io/tasks/${id}`)
+    const data = await res.data;
+
+    return data
+  }
     // toggle reminder
-    const toggleReminder=(id)=>
+    const toggleReminder=async(id)=>
     {
-      setTasks(tasks.map((task)=>task.id===id?{...task,reminder:!task.reminder}:task))
-      console.log(id)
+
+    
+      const taskToToggle = await fetchTask(id)
+      const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder }
+  
+      const res = await axios( {
+        method: 'put',
+        url:`https://62a31a9721232ff9b2186c2c.mockapi.io/tasks/${id}`,
+        headers: {
+          'Content-type': 'application/json',
+        },
+        data:updTask
+      })
+  
+      const data = await res.data;
+     
+      setTasks(
+        tasks.map((task) =>
+          task.id === id ? { ...task, reminder: data.reminder } : task
+        )
+      ) 
     }
     // add task
     const addTask= async(task)=>
     {
-      const res=await fetch('http://localhost:5000/tasks',{method :'POST',
-    headers:{'Content-type':'application/json'},body:JSON.stringify(task)})
-    
-    const data=await res.json()
-    setTasks([...tasks,data])
+      
+    // const res=await fetch('http://localhost:5000/tasks',{method :'POST',
+    // headers:{'Content-type':'application/json'},body:JSON.stringify(task)})
+    // const data=await res.json()
+    // setTasks([...tasks,data])
+  
+// using axios
+  const res=await axios({
+    method:'post',url:'https://62a31a9721232ff9b2186c2c.mockapi.io/tasks',
+      data:task,
+      headers:{'Content-type':'application/json'}
+  })
+  const data=res.data;
+  setTasks([...tasks,data])
+
+
+
     //  const id=Math.floor(Math.random()*10000)+1
     //  const newTask={id,...task}
     //  setTasks([...tasks,newTask])
