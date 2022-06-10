@@ -2,7 +2,7 @@ Built a task-tracker app using reactjs and deployed it on github pages as well a
 
 Used a mockAPI to achieve the backend requirements
 
-deplyment Links:-
+deployment Links:-
 
 Github-Pages:- https://prajwalahetti.github.io/react-task-track/
 Heroku-App:-https://task----tracker.herokuapp.com/
